@@ -124,7 +124,7 @@ with tab1:
 # --- TAB 2: MATCH RATING (MPR) ---
 with tab2:
     st.header("Match Performance Rating (MPR)")
-    st.markdown("Calculates both **Raw MPR** (Role-Neutral) and **Weighted MPR** (Role-Specific).")
+    st.markdown("Calculates both **MPR** (Role-Neutral) and **Weighted MPR** (Role-Specific).")
     
     # Role Selection
     selected_role = st.selectbox("Select Role for Weighting", list(ROLE_WEIGHTS.keys()))
@@ -184,10 +184,10 @@ with tab2:
         
         # Comparison Metrics
         c1, c2 = st.columns(2)
-        c1.metric("Raw MPR (Role Neutral)", f"{raw_mpr_val:.1f}", help="Standard rating (0-100) regardless of role")
+        c1.metric("MPR (Role Neutral)", f"{raw_mpr_val:.1f}", help="Standard rating (0-100) regardless of role")
         c2.metric(f"Weighted MPR ({selected_role})", f"{weighted_mpr_val:.1f}", delta=f"{weighted_mpr_val - raw_mpr_val:.1f} vs Raw")
         
-        st.caption("MPR measures general football excellence. Weighted MPR measures role-specific performance.")
+        st.caption("MPR measures a performance. Weighted MPR measures role-specific performance.")
         
         # Breakdown Chart
         st.markdown("#### Contribution Breakdown (Weighted)")
@@ -206,7 +206,7 @@ with tab2:
 # --- TAB 3: SEASON EVALUATION (CSR) ---
 with tab3:
     st.header("Contextual Season Rating (CSR)")
-    st.markdown("Evaluates consistency, ceiling, and transferability (Section 8)[cite: 91].")
+    st.markdown("Evaluates consistency, ceiling, and transferability")
     
     c1, c2 = st.columns(2)
     
@@ -226,8 +226,9 @@ with tab3:
     st.metric("Final CSR Score", f"{csr_score:.1f}")
     
     st.info("""
-    **Interpretation Guidelines[cite: 105]:**
-    * **Raw MPR**: Role-neutral truth.
+    **Interpretation Guidelines**
+    * **Raw MPR**: Role-neutral.
     * **Weighted MPR**: Role-specific performance.
-    * **CSR**: Season-level player value.
+    * **CSR**: Season rating.
+
     """)
