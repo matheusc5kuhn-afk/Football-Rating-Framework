@@ -317,6 +317,10 @@ with tab3:
     # Ensure Date column is properly typed for data_editor
     st.session_state.matches['Date'] = pd.to_datetime(st.session_state.matches['Date'])
     
+    # Pre-compute options lists with proper types
+    player_options = [str(p) for p in st.session_state.players["Player Name"].tolist()] if len(st.session_state.players) > 0 else ["N/A"]
+    tournament_options = [""] + [str(t) for t in st.session_state.tournaments["Name"].tolist()] if len(st.session_state.tournaments) > 0 else [""]
+    
     col_config = {
         "Match ID": st.column_config.NumberColumn("Match ID", width="small"),
         "Date": st.column_config.DateColumn("Date", width="medium"),
@@ -329,12 +333,12 @@ with tab3:
         "Result": st.column_config.TextColumn("Result", width="medium"),
         "Player": st.column_config.SelectboxColumn(
             "Player",
-            options=st.session_state.players["Player Name"].tolist() if len(st.session_state.players) > 0 else ["N/A"],
+            options=player_options,
             width="medium"
         ),
         "Tournament": st.column_config.SelectboxColumn(
             "Tournament",
-            options=[""] + st.session_state.tournaments["Name"].tolist() if len(st.session_state.tournaments) > 0 else [""],
+            options=tournament_options,
             width="large"
         )
     }
