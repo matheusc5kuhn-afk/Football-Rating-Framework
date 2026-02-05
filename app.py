@@ -874,9 +874,11 @@ with tab7:
             axis=1
         )
         
+        # Sort by Timestamp before selecting display columns
+        stats_df = stats_df.sort_values("Timestamp", ascending=False)
+        
         display_cols = ["Type", "Player", "Match ID", "Tournament", "Goals", "Assists", "BCC", "Dribbles", "Team Contribution", "Clutch Contribution"]
         stats_df = stats_df[display_cols]
-        stats_df = stats_df.sort_values("Timestamp", ascending=False)
         
         st.dataframe(stats_df, use_container_width=True)
         
